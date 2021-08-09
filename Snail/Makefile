@@ -6,40 +6,54 @@
 #    By: safoh <safoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/04 13:58:03 by safoh         #+#    #+#                  #
-#    Updated: 2021/08/06 16:07:35 by safoh         ########   odam.nl          #
+#    Updated: 2021/08/09 17:54:29 by safoh         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := snail
-BUILD_DIR := ./build
-SRC_DIRS := ./src
-INC_DIRS := ./include
-SRCS := $(shell find $(SRC_DIRS) -name *.c)
-OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 CC = gcc
-
-# Add a prefix to INC_DIRS. So moduleA would become -ImoduleA. GCC understands this -I flag
-INC_FLAGS := $(addprefix -I,$(INC_DIRS))
-
-# The -MMD and -MP flags together generate Makefiles for us!
-# These files will have .d instead of .o as the output.
 CFLAGS = -Wall -Wextra -Werror
 CRITERION = -lcriterion
+RM = rm -f
+
+################################################################################
+# SRCS			=	RESOURCES
+# OBJ			=	OBJECTS
+# SRC_DIR		=	SOURCES DIRECTORY
+# INC_DIR		=	INCLUDES DIRECTORY
+# BUILD_DIR	=	BUILD DIRECTORY
+
+SRCS :=	main.c snail.c
+SRC_DIR := ./src
+INC_DIR := ./include
+BUILD_DIR := ./build
+OBJS := $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
+###############################################################################
+# MESSSAGE		= Message after compiling
+# C_MESSAGE		= Message for building objects
+
+MESSSAGE		= "Run ./snail to see the results"
+C_MESSAGE		= "Building C objects... %-33.33s\r"
 
 all: $(NAME)
 
-$(BUILD_DIR)/$(NAME): $(OBJS)
+$(NAME): $(OBJS)
+	@echo "\n"
 	$(CC) $(CRITERION) $(OBJS) -o $@
+	@echo $(MESSSAGE)
 
-$(BUILD_DIR)/%.o: %.c
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
+	@printf $(C_MESSAGE)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJS)
+	$(RM) $(OBJS)
+	@echo "Objects cleaned"
 
-fclean:
-	rm -rf *.o $(NAME)
+fclean: clean
+	$(RM) $(NAME)
+	@echo "Executable cleaned"
 
 re: fclean all
 
