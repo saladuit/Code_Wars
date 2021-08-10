@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/04 14:44:57 by safoh         #+#    #+#                 */
-/*   Updated: 2021/08/04 16:32:24 by safoh         ########   odam.nl         */
+/*   Updated: 2021/08/10 12:38:45 by safoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SNAIL_H
 # include <criterion/criterion.h>
 # include <criterion/new/assert.h>
+# include <criterion/logging.h>
 # include <stddef.h>
 # include <limits.h>
 # include <stdio.h>
