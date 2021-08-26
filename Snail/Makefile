@@ -6,34 +6,35 @@
 #    By: safoh <safoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/04 13:58:03 by safoh         #+#    #+#                  #
-#    Updated: 2021/08/09 17:54:29 by safoh         ########   odam.nl          #
+#    Updated: 2021/08/11 14:20:40 by safoh         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := snail
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-CRITERION = -lcriterion
-RM = rm -f
+NAME			:=	snail
+CC				:=	gcc
+CFLAGS			=	-Wall -Wextra -Werror
+CRITERION		:=	-lcriterion
+RM				:=	rm -f
 
 ################################################################################
 # SRCS			=	RESOURCES
-# OBJ			=	OBJECTS
 # SRC_DIR		=	SOURCES DIRECTORY
 # INC_DIR		=	INCLUDES DIRECTORY
-# BUILD_DIR	=	BUILD DIRECTORY
+# BUILD_DIR		=	BUILD DIRECTORY
+# OBJS			=	OBJECTS
 
-SRCS :=	main.c snail.c
-SRC_DIR := ./src
-INC_DIR := ./include
-BUILD_DIR := ./build
-OBJS := $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
+SRCS			:=	main.c snail.c
+SRC_DIR			:=	./src
+INC_DIR			:=	./include
+BUILD_DIR		:=	./build
+OBJS			:=	$(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
+
 ###############################################################################
-# MESSSAGE		= Message after compiling
-# C_MESSAGE		= Message for building objects
+# MESSSAGE		=	Message after compiling
+# C_MESSAGE		=	Message for building objects
 
-MESSSAGE		= "Run ./snail to see the results"
-C_MESSAGE		= "Building C objects... %-33.33s\r"
+MESSSAGE		=	"Run ./snail to see the results"
+C_MESSAGE		=	"Building C objects... %-33.33s\r"
 
 all: $(NAME)
 
