@@ -1,33 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   snail.h                                         |o_o || |                */
+/*   SolvePuzzle.h                                   |o_o || |                */
 /*                                                     +:+                    */
 /*   By: safoh <safoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/04 14:44:57 by safoh         #+#    #+#                 */
-/*   Updated: 2021/11/24 14:03:33 by safoh        \___)=(___/                 */
+/*   Updated: 2021/11/24 14:16:48 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SNAIL_H
-# define SNAIL_H
+#ifndef SOLVEPUZZLE_H
+# define SOLVEPUZZLE_H
 # include <criterion/criterion.h>
-# include <criterion/new/assert.h>
-# include <criterion/logging.h>
 # include <stddef.h>
 # include <limits.h>
 # include <stdio.h>
 
-typedef enum {
-	ASSERT_PASS,
-	ASSERT_FAIL
-} assertop;
-extern int *snail(size_t *outsz, const int **mx, size_t m, size_t n);
-int **ia_to_imx(int **mx, const int *a, size_t rows, size_t cols);
-char *ia_to_s(char *s, const int *a, size_t n, const char *sep);
-char *imx_to_s(char *s, const int **mx, size_t nrows, size_t ncols);
-assertop assert_mem_eq(const void *actual, const void *expected, size_t n, size_t size);
-void assert_data(const int *mx, size_t m, size_t n, const int *expected_snail, size_t expected_outsz);
+static int clues[][16] = {
+{
+	2, 2, 1, 3,
+  	2, 2, 3, 1,
+  	1, 2, 2, 3,
+  	3, 2, 1, 3 },
+{
+	0, 0, 1, 2,
+  	0, 2, 0, 0,
+  	0, 3, 0, 0,
+  	0, 1, 0, 0 }
+};
+
+int outcomes[][4][4] = {
+{
+	{ 1, 3, 4, 2 },
+  	{ 4, 2, 1, 3 },
+  	{ 3, 4, 2, 1 },
+  	{ 2, 1, 3, 4 }
+},
+{
+	{ 2, 1, 4, 3 },
+  	{ 3, 4, 1, 2 },
+  	{ 4, 2, 3, 1 },
+  	{ 1, 3, 2, 4 }
+}
+};
+
+int** SolvePuzzle (int *clues);
 
 #endif

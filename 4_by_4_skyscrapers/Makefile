@@ -6,14 +6,14 @@
 #    By: safoh <safoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/04 13:58:03 by safoh         #+#    #+#                  #
-#    Updated: 2021/11/24 14:07:17 by safoh        \___)=(___/                  #
+#    Updated: 2021/11/24 14:20:52 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			:=	snail
+NAME			:=	sky
 CC				:=	gcc
-CFLAGS			=	-Wall -Wextra -Werror
-CRITERION		:=	-lcriterion
+CFLAGS			=	-Wall -Wextra -Werror -I$(HOME)/.brew/Cellar/criterion/2.3.3/include
+CRITERION		:=	-lcriterion -L$(HOME)/.brew/Cellar/criterion/2.3.3/lib
 RM				:=	rm -f
 
 ################################################################################
@@ -23,7 +23,7 @@ RM				:=	rm -f
 # BUILD_DIR		=	BUILD DIRECTORY
 # OBJS			=	OBJECTS
 
-SRCS			:=	main.c snail.c
+SRCS			:=	main.c SolvePuzzle.c
 SRC_DIR			:=	./src
 INC_DIR			:=	./include
 BUILD_DIR		:=	./build
@@ -46,7 +46,7 @@ $(NAME): $(OBJS)
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
 	@printf $(C_MESSAGE)
-	$(CC) $(CRITERION) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
